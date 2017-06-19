@@ -38,8 +38,9 @@
     <ApplicationIcon>1497604059_Strawberry.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HearthMirror">
-      <HintPath>..\..\..\SourceCode\HearthMirror-master\HearthMirror\bin\x86\Debug\HearthMirror.dll</HintPath>
+    <Reference Include="HearthMirror, Version=8.2.0.19506, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\HearthMirror.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
