@@ -15,7 +15,7 @@
         <CollectionViewSource x:Key="viewSource" Source="{Binding Cards}"/>
     </Window.Resources>
     <DockPanel>
-        <StatusBar DockPanel.Dock="Bottom" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}" FontSize="12">
+        <StatusBar DockPanel.Dock="Bottom" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
             <StatusBar.Resources>
                 <Style x:Key="{x:Static StatusBar.SeparatorStyleKey}" TargetType="{x:Type Separator}">
                     <!--Style the Separator here, the x:Key name is important-->
