@@ -12,5 +12,5 @@ Run the exe and Sync while Hearthstone is open.
 
 ## Acknowledgments
 
-* [HearthMirror.dll](https://github.com/HearthSim/HearthMirror/)
+* [HearthMirror](https://github.com/HearthSim/HearthMirror/)
 * [HearthstoneJSON](https://hearthstonejson.com/)
