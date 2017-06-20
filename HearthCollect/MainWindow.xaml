@@ -33,9 +33,9 @@
             <Separator/>
             <TextBlock Text="{Binding ExcessDust, StringFormat='Dust extras: {0}'}" ToolTip="Dust goldens before normals for max dust."/>
             <Separator/>
-            <TextBlock Text="{Binding ExcessDustPreserveGoldens, StringFormat='Dust extras preserve goldens: {0}'}" ToolTip="Dust normals before goldens."/>
+            <TextBlock Text="{Binding ExcessDustPreserveGoldens, StringFormat='Dust extras, preserve goldens: {0}'}" ToolTip="Dust normals before goldens."/>
             <Separator/>
-            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='Dust extras ignore goldens: {0}'}" ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting."/>
+            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='Dust extras, ignore goldens: {0}'}" ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting."/>
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -95,7 +95,7 @@
                         <Setter Property="Focusable" Value="False"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button x:Name="btnSync" Content="Sync" Command="{Binding SynchronizeCollectionCommand}" Width="75"/>
+                <Button x:Name="btnSync" Content="Sync" Width="75" Click="btnSync_Click"/>
                 <Button x:Name="btnAll" Content="All" Width="75" Click="btnAll_Click"/>
                 <Button x:Name="btnNone" Content="None" Width="75" Click="btnNone_Click"/>
                 <ToggleButton x:Name="btnOwned" Content="Owned" Width="75" Click="FilterRefresh" IsChecked="True"/>

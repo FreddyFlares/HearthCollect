@@ -1,6 +1,6 @@
 # HearthCollect
 
-Gets your Hearthstone collection into a datagrid using HearthMirror and calculates total dust values.
+Gets your Hearthstone collection into a datagrid using HearthMirror and displays dust values.
 
 ## Compiling
 

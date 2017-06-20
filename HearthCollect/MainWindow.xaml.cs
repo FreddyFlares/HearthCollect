@@ -53,6 +53,12 @@ namespace HearthCollect
             timer.Start();
         }
 
+        private void btnSync_Click(object sender, RoutedEventArgs e)
+        {
+            ((ViewModel)DataContext).SynchronizeCollectionCommand.Execute(null);
+            FilterRefresh();
+        }
+
         private void btnAll_Click(object sender, RoutedEventArgs e)
         {
             ButtonBase b = (ButtonBase)sender;
