@@ -10,7 +10,7 @@ Requires HearthMirror.dll, see acknowledgements.
 
 Run the exe and Sync while Hearthstone is open.
 
-## Acknowledgments
+## Acknowledgements
 
 * [HearthMirror](https://github.com/HearthSim/HearthMirror/)
 * [HearthstoneJSON](https://hearthstonejson.com/)
