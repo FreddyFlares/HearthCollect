@@ -35,15 +35,15 @@
             <Separator/>
             <TextBlock Text="{Binding ExcessDustPreserveGoldens, StringFormat='Dust extras preserve goldens: {0}'}" ToolTip="Dust normals before goldens."/>
             <Separator/>
-            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='DE extras ignoring goldens: {0}'}" ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting."/>
+            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='Dust extras ignore goldens: {0}'}" ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting."/>
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid Name="dataGrid" ItemsSource="{Binding Source={StaticResource viewSource}}" IsReadOnly="True" SelectedIndex="-1"
-                  AutoGenerateColumns="False" Grid.Column="1" Grid.ColumnSpan="1" Focusable="False" SelectionMode="Single" CanUserResizeRows="False">
+            <DataGrid Name="dataGrid" ItemsSource="{Binding Source={StaticResource viewSource}}" IsReadOnly="True" SelectedIndex="-1" 
+                  AutoGenerateColumns="False" Grid.Column="1" Grid.ColumnSpan="1" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ID}" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding Normal}" Header="Normal"/>
@@ -74,12 +74,18 @@
                         </Border>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="{Binding CardClass, Converter={StaticResource ClassToColorConverter}}"/>
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
+            <TextBox Name="txtSearch" VerticalAlignment="Top" Background="Brown" Height="25" TextChanged="TextBox_TextChanged"/>
             <StackPanel Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="Button">
