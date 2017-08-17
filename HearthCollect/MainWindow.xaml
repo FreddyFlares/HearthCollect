@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HearthCollect"
         mc:Ignorable="d"
+        Name="root"
         Title="HearthCollect" SizeToContent="Width" Height="800">
     <Window.DataContext>
         <local:ViewModel/>
@@ -20,7 +21,7 @@
                 <Style x:Key="{x:Static StatusBar.SeparatorStyleKey}" TargetType="{x:Type Separator}">
                     <!--Style the Separator here, the x:Key name is important-->
                     <Setter Property="Margin" Value="6,0,6,0"/>
-               </Style>
+                </Style>
             </StatusBar.Resources>
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -85,7 +86,8 @@
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
-            <TextBox Name="txtSearch" VerticalAlignment="Top" Background="Brown" Height="25" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="txtSearch" VerticalAlignment="Top" Background="Brown" Height="25" SourceUpdated="txtSearch_SourceUpdated"
+                     Text="{Binding ElementName=root, Path=FilterString, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, Delay=500}"/>
             <StackPanel Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="Button">

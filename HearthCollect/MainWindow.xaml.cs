@@ -24,8 +24,9 @@ namespace HearthCollect
         public int ExcessDustPreserveGoldens { get { return excessDustPreserveGoldens; } set { excessDustPreserveGoldens = value; OnPropertyChanged(); } }
         int excessDustIgnoreGolden = 0;
         public int ExcessDustIgnoreGolden { get { return excessDustIgnoreGolden; } set { excessDustIgnoreGolden = value; OnPropertyChanged(); } }
+        string filterString = "";
+        public string FilterString { get { return filterString; } set { filterString = value; OnPropertyChanged(); } }
 
-        DispatcherTimer timer;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
@@ -34,23 +35,15 @@ namespace HearthCollect
             dataGrid.UnselectAll();
             // Get the custom view that was created in the xaml, not the default view. Page 395 wpf4u.
             view = ((CollectionViewSource)Resources["viewSource"]).View;
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(0.5);
-            timer.Tick += Timer_Tick;
             view.Filter = Filter;
             FilterRefresh();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void txtSearch_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            timer.Stop();
+            // Note the Binding.Delay property set in the xaml
+            // which causes the binding update to happen 'Delay' ms after the last property change
             FilterRefresh();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            timer.Stop();
-            timer.Start();
         }
 
         private void btnSync_Click(object sender, RoutedEventArgs e)
@@ -131,7 +124,7 @@ namespace HearthCollect
                 return false;
             if (!(btnIcecrown.IsChecked ?? false) && c.Set == CardSet.ICECROWN)
                 return false;
-            if (txtSearch.Text != "" && !c.Name.ToLowerInvariant().Contains(txtSearch.Text.ToLowerInvariant()))
+            if (FilterString != "" && !c.Name.ToLowerInvariant().Contains(FilterString.ToLowerInvariant()))
                 return false;
             return true;
         }
