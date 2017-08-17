@@ -117,6 +117,7 @@
                     <ToggleButton x:Name="btnKara" Content="Karazhan" Width="75" Click="FilterRefresh" IsChecked="True"/>
                     <ToggleButton x:Name="btnGangs" Content="Gangs" Width="75" Click="FilterRefresh" IsChecked="True"/>
                     <ToggleButton x:Name="btnUngoro" Content="Ungoro" Width="75" Click="FilterRefresh" IsChecked="True"/>
+                    <ToggleButton x:Name="btnIcecrown" Content="Icecrown" Width="75" Click="FilterRefresh" IsChecked="True"/>
                 </StackPanel>
                 <ToggleButton x:Name="btnHero" Content="Hero" Width="75" Click="FilterRefresh"/>
             </StackPanel>

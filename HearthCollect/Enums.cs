@@ -51,6 +51,7 @@ enum CardSet
     GANGS = 25,
     GANGS_RESERVE = 26,
     UNGORO = 27,
+    ICECROWN = 1001
 }
 
 enum CardType

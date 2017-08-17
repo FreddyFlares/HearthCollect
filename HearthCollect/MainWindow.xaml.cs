@@ -16,13 +16,13 @@ namespace HearthCollect
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         ICollectionView view;
-        int dustValue=0;
+        int dustValue = 0;
         public int DustValue { get { return dustValue; } set { dustValue = value; OnPropertyChanged(); } }
         int excessDust = 0;
         public int ExcessDust { get { return excessDust; } set { excessDust = value; OnPropertyChanged(); } }
         int excessDustPreserveGoldens = 0;
         public int ExcessDustPreserveGoldens { get { return excessDustPreserveGoldens; } set { excessDustPreserveGoldens = value; OnPropertyChanged(); } }
-        int excessDustIgnoreGolden =0;
+        int excessDustIgnoreGolden = 0;
         public int ExcessDustIgnoreGolden { get { return excessDustIgnoreGolden; } set { excessDustIgnoreGolden = value; OnPropertyChanged(); } }
 
         DispatcherTimer timer;
@@ -129,6 +129,8 @@ namespace HearthCollect
                 return false;
             if (!(btnUngoro.IsChecked ?? false) && c.Set == CardSet.UNGORO)
                 return false;
+            if (!(btnIcecrown.IsChecked ?? false) && c.Set == CardSet.ICECROWN)
+                return false;
             if (txtSearch.Text != "" && !c.Name.ToLowerInvariant().Contains(txtSearch.Text.ToLowerInvariant()))
                 return false;
             return true;
@@ -142,33 +144,10 @@ namespace HearthCollect
             ExcessDustIgnoreGolden = 0;
             foreach (Card c in view)
             {
-                switch (c.Rarity)
-                {
-                    case Rarity.COMMON:
-                        DustValue += c.Normal * 5 + c.Golden * 50;
-                        ExcessDust += Math.Min(Math.Max(0, c.Total - 2), c.Golden) * 50 + (Math.Max(0, c.Normal - 2)) * 5;
-                        ExcessDustPreserveGoldens += Math.Min(Math.Max(0, c.Total - 2), c.Normal) * 5 + (Math.Max(0, c.Golden - 2)) * 50;
-                        ExcessDustIgnoreGolden += Math.Max(0, c.Normal - 2) *5;
-                        break;
-                    case Rarity.RARE:
-                        DustValue += c.Normal * 20 + c.Golden * 100;
-                        ExcessDust += Math.Min(Math.Max(0, c.Total - 2), c.Golden) * 100 + (Math.Max(0, c.Normal - 2)) * 20;
-                        ExcessDustPreserveGoldens += Math.Min(Math.Max(0, c.Total - 2), c.Normal) * 20 + (Math.Max(0, c.Golden - 2)) * 100;
-                        ExcessDustIgnoreGolden += Math.Max(0, c.Normal - 2) * 20;
-                        break;
-                    case Rarity.EPIC:
-                        DustValue += c.Normal * 100 + c.Golden * 400;
-                        ExcessDust += Math.Min(Math.Max(0, c.Total - 2), c.Golden) * 400 + (Math.Max(0, c.Normal - 2)) * 100;
-                        ExcessDustPreserveGoldens += Math.Min(Math.Max(0, c.Total - 2), c.Normal) * 100 + (Math.Max(0, c.Golden - 2)) * 400;
-                        ExcessDustIgnoreGolden += Math.Max(0, c.Normal - 2) * 100;
-                        break;
-                    case Rarity.LEGENDARY:
-                        DustValue += c.Normal * 400 + c.Golden * 1600;
-                        ExcessDust += Math.Min(Math.Max(0, c.Total - 1), c.Golden) * 1600 + (Math.Max(0, c.Normal - 1)) * 400;
-                        ExcessDustPreserveGoldens += Math.Min(Math.Max(0, c.Total - 1), c.Normal) * 400 + (Math.Max(0, c.Golden - 1)) * 1600;
-                        ExcessDustIgnoreGolden += Math.Max(0, c.Normal - 1) * 400;
-                        break;
-                }
+                DustValue += c.TotalDustValue;
+                ExcessDust += c.ExcessDust;
+                ExcessDustPreserveGoldens += c.ExcessDustPreserveGoldens;
+                ExcessDustIgnoreGolden += c.ExcessDustIgnoreGoldens;
             }
         }
 
