@@ -23,6 +23,13 @@
                     <Setter Property="Margin" Value="6,0,6,0"/>
                 </Style>
             </StatusBar.Resources>
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFDADADA" Offset="1"/>
+                    <GradientStop Color="#FFDADADA"/>
+                    <GradientStop Color="White" Offset="0.5"/>
+                </LinearGradientBrush>
+            </StatusBar.Background>
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>

@@ -35,25 +35,25 @@ namespace HearthCollect
             switch (@class)
             {
                 case CardClass.DRUID:
-                    return Brushes.Goldenrod;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0x7D, 0x0B));
                 case CardClass.HUNTER:
-                    return Brushes.PaleGreen;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xA5, 0xD8, 0x73));
                 case CardClass.MAGE:
-                    return Brushes.LightSkyBlue;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0x6A, 0xCC, 0xF1));
                 case CardClass.NEUTRAL:
-                    return Brushes.LightGray;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xE4, 0xE4, 0xE4));
                 case CardClass.PALADIN:
-                    return Brushes.LightPink;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xF6, 0x8C, 0xBA));
                 case CardClass.PRIEST:
-                    return Brushes.White;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
                 case CardClass.ROGUE:
-                    return Brushes.LightYellow;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xFE, 0xF6, 0x67));
                 case CardClass.SHAMAN:
-                    return Brushes.Cyan;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x71, 0xDB));
                 case CardClass.WARLOCK:
-                    return new SolidColorBrush(Color.FromRgb(0x99,0x66,0xff));
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0x93, 0x82, 0xC8));
                 case CardClass.WARRIOR:
-                    return Brushes.Tan;
+                    return new SolidColorBrush(Color.FromArgb(0xFF, 0xC7, 0x9C, 0x6F));
             }
             return Brushes.Red;
         }
