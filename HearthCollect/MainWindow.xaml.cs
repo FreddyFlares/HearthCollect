@@ -33,8 +33,14 @@ namespace HearthCollect
         {
             InitializeComponent();
             dataGrid.UnselectAll();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             // Get the custom view that was created in the xaml, not the default view. Page 395 wpf4u.
-            view = ((CollectionViewSource)Resources["viewSource"]).View;
+            CollectionViewSource viewSource = (CollectionViewSource)Resources["viewSource"];
+            view = viewSource.View;
             view.Filter = Filter;
             FilterRefresh();
         }
@@ -123,6 +129,8 @@ namespace HearthCollect
             if (!(btnUngoro.IsChecked ?? false) && c.Set == CardSet.UNGORO)
                 return false;
             if (!(btnIcecrown.IsChecked ?? false) && c.Set == CardSet.ICECROWN)
+                return false;
+            if (!(btnLootapalooza.IsChecked ?? false) && c.Set == CardSet.LOOTAPALOOZA)
                 return false;
             if (FilterString != "" && !c.Name.ToLowerInvariant().Contains(FilterString.ToLowerInvariant()))
                 return false;

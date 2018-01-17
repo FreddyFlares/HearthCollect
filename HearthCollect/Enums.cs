@@ -51,7 +51,8 @@ enum CardSet
     GANGS = 25,
     GANGS_RESERVE = 26,
     UNGORO = 27,
-    ICECROWN = 1001
+    ICECROWN = 1001,
+    LOOTAPALOOZA = 1004
 }
 
 enum CardType
@@ -118,6 +119,7 @@ enum Race
     NERUBIAN = 22,
     PIRATE = 23,
     DRAGON = 24,
+    BLANK = 25
 }
 
 enum Rarity

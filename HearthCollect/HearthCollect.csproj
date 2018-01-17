@@ -38,7 +38,7 @@
     <ApplicationIcon>1497604059_Strawberry.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HearthMirror, Version=8.2.0.19506, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="HearthMirror, Version=9.2.0.21517, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\HearthMirror.dll</HintPath>
     </Reference>
@@ -99,9 +99,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="1497604059_Strawberry.ico" />
-    <Content Include="cards.collectible.json">
+    <None Include="cards.collectible.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
