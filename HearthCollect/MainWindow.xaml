@@ -5,131 +5,133 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HearthCollect"
         mc:Ignorable="d"
-        Name="root"
-        Title="HearthCollect" SizeToContent="Width" Height="800">
+        Name="root" Title="HearthCollect" SizeToContent="Width" Height="800">
     <Window.DataContext>
-        <local:ViewModel/>
+        <local:ViewModel />
     </Window.DataContext>
     <Window.Resources>
         <local:RarityToColorConverter x:Key="RarityToColorConverter" />
-        <local:ClassToColorConverter x:Key="ClassToColorConverter"/>
-        <CollectionViewSource x:Key="viewSource" Source="{Binding Cards}"/>
+        <local:ClassToColorConverter x:Key="ClassToColorConverter" />
+        <local:IntToDurabilityConverter x:Key="IntToDurabilityConverter" />
+        <CollectionViewSource x:Key="viewSource" Source="{Binding Cards}" />
     </Window.Resources>
     <DockPanel>
-        <StatusBar DockPanel.Dock="Bottom" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+        <StatusBar DockPanel.Dock="Bottom" DataContext="{Binding ElementName=root}">
             <StatusBar.Resources>
                 <Style x:Key="{x:Static StatusBar.SeparatorStyleKey}" TargetType="{x:Type Separator}">
                     <!--Style the Separator here, the x:Key name is important-->
-                    <Setter Property="Margin" Value="6,0,6,0"/>
+                    <Setter Property="Margin" Value="6,0,6,0" />
                 </Style>
             </StatusBar.Resources>
             <StatusBar.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFDADADA" Offset="1"/>
-                    <GradientStop Color="#FFDADADA"/>
-                    <GradientStop Color="White" Offset="0.5"/>
+                    <GradientStop Color="#FFDADADA" Offset="1" />
+                    <GradientStop Color="#FFDADADA" />
+                    <GradientStop Color="White" Offset="0.5" />
                 </LinearGradientBrush>
             </StatusBar.Background>
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <TextBlock Text="{Binding Source={StaticResource viewSource}, Path=Count, StringFormat='Count: {0}'}" ToolTip="Number of distinct cards in the filter."/>
-            <Separator/>
-            <TextBlock Text="{Binding DustValue, StringFormat='Total dust value: {0}'}" ToolTip="Dust value of all the cards in the filter."/>
-            <Separator/>
-            <TextBlock Text="{Binding ExcessDust, StringFormat='Dust extras: {0}'}" ToolTip="Dust goldens before normals for max dust."/>
-            <Separator/>
-            <TextBlock Text="{Binding ExcessDustPreserveGoldens, StringFormat='Dust extras, preserve goldens: {0}'}" ToolTip="Dust normals before goldens."/>
-            <Separator/>
-            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='Dust extras, ignore goldens: {0}'}" ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting."/>
+            <TextBlock Text="{Binding Source={StaticResource viewSource}, Path=Count, StringFormat='Count: {0}'}" ToolTip="Number of distinct cards in the filter." />
+            <Separator />
+            <TextBlock Text="{Binding DustValue, StringFormat='Total dust value: {0}'}" ToolTip="Dust value of all the cards in the filter." />
+            <Separator />
+            <TextBlock Text="{Binding ExcessDust, StringFormat='Dust extras: {0}'}" ToolTip="Dust goldens before normals for max dust." />
+            <Separator />
+            <TextBlock Text="{Binding ExcessDustPreserveGoldens, StringFormat='Dust extras, preserve goldens: {0}'}" ToolTip="Dust normals before goldens." />
+            <Separator />
+            <TextBlock Text="{Binding ExcessDustIgnoreGolden, StringFormat='Dust extras, ignore goldens: {0}'}"
+                       ToolTip="Ignore goldens completely.&#x0a;This is what Hearthstone displays in crafting." />
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <DataGrid Name="dataGrid" ItemsSource="{Binding Source={StaticResource viewSource}}" IsReadOnly="True" SelectedIndex="-1" 
-                  AutoGenerateColumns="False" Grid.Column="1" Grid.ColumnSpan="1" SelectionMode="Single" CanUserResizeRows="False">
+            <DataGrid Name="dataGrid" ItemsSource="{Binding Source={StaticResource viewSource}}" IsReadOnly="True" SelectedIndex="-1" AutoGenerateColumns="False"
+                      Grid.Column="1" Grid.ColumnSpan="1" SelectionMode="Single" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding ID}" Header="ID"/>
-                    <DataGridTextColumn Binding="{Binding Normal}" Header="Normal"/>
-                    <DataGridTextColumn Binding="{Binding Golden}" Header="Golden"/>
-                    <DataGridTextColumn Binding="{Binding Total}" Header="Total"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                    <DataGridTextColumn Binding="{Binding Set}" Header="Set"/>
-                    <DataGridTextColumn Binding="{Binding CardClass}" Header="Class"/>
+                    <DataGridTextColumn Binding="{Binding ID}" Header="ID" />
+                    <DataGridTextColumn Binding="{Binding Normal}" Header="Normal" />
+                    <DataGridTextColumn Binding="{Binding Golden}" Header="Golden" />
+                    <DataGridTextColumn Binding="{Binding Total}" Header="Total" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                    <DataGridTextColumn Binding="{Binding Set}" Header="Set" />
+                    <DataGridTextColumn Binding="{Binding CardClass}" Header="Class" />
                     <DataGridTemplateColumn Header="Rarity" SortMemberPath="Rarity">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
-                                <Run Foreground="{Binding Rarity, Converter={StaticResource RarityToColorConverter}}" Text="{Binding Rarity}"/>
+                                <Run Foreground="{Binding Rarity, Converter={StaticResource RarityToColorConverter}}" Text="{Binding Rarity}" />
                                 </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding Type}" Header="Type"/>
-                    <DataGridTextColumn Binding="{Binding Race}" Header="Race"/>
-                    <DataGridTextColumn Binding="{Binding Cost}" Header="Cost"/>
-                    <DataGridTextColumn Binding="{Binding Attack}" Header="Attack"/>
-                    <DataGridTextColumn Binding="{Binding Health}" Header="Health"/>
+                    <DataGridTextColumn Binding="{Binding Type}" Header="Type" />
+                    <DataGridTextColumn Binding="{Binding Race}" Header="Race" />
+                    <DataGridTextColumn Binding="{Binding Cost}" Header="Cost" />
+                    <DataGridTextColumn Binding="{Binding Attack}" Header="Attack" />
+                    <DataGridTextColumn Binding="{Binding Health}" Header="Health" />
+                    <DataGridTextColumn Binding="{Binding Durability, Converter={StaticResource IntToDurabilityConverter}}" Header="Durability" />
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <Border BorderThickness="0" Background="BlanchedAlmond" Padding="5">
-                            <TextBlock local:TextAttached.RichText="{Binding Text}"/>
+                            <TextBlock local:TextAttached.RichText="{Binding Text}" />
                         </Border>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
-                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Focusable" Value="False" />
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="{Binding CardClass, Converter={StaticResource ClassToColorConverter}}"/>
+                        <Setter Property="Background" Value="{Binding CardClass, Converter={StaticResource ClassToColorConverter}}" />
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
             <TextBox Name="txtSearch" VerticalAlignment="Top" Background="Brown" Height="25" SourceUpdated="txtSearch_SourceUpdated"
-                     Text="{Binding ElementName=root, Path=FilterString, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, Delay=500}"/>
+                     Text="{Binding ElementName=root, Path=FilterString, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, Delay=500}" />
             <StackPanel Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="Button">
-                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Focusable" Value="False" />
                     </Style>
                     <Style TargetType="ToggleButton">
-                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Focusable" Value="False" />
                     </Style>
                 </StackPanel.Resources>
-                <Button x:Name="btnSync" Content="Sync" Width="75" Click="btnSync_Click"/>
-                <Button x:Name="btnAll" Content="All" Width="75" Click="btnAll_Click"/>
-                <Button x:Name="btnNone" Content="None" Width="75" Click="btnNone_Click"/>
-                <ToggleButton x:Name="btnOwned" Content="Owned" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                <ToggleButton x:Name="btnMissing" Content="Missing" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                <ToggleButton x:Name="btnCore" Content="Core" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                <ToggleButton x:Name="btnExpert" Content="Expert" Width="75" Click="FilterRefresh" IsChecked="True"/>
+                <Button x:Name="btnSync" Content="Sync" Width="75" Click="btnSync_Click" />
+                <Button x:Name="btnAll" Content="All" Width="75" Click="btnAll_Click" />
+                <Button x:Name="btnNone" Content="None" Width="75" Click="btnNone_Click" />
+                <ToggleButton x:Name="btnOwned" Content="Owned" Width="75" Click="FilterRefresh" IsChecked="True" />
+                <ToggleButton x:Name="btnMissing" Content="Missing" Width="75" Click="FilterRefresh" IsChecked="True" />
+                <ToggleButton x:Name="btnCore" Content="Core" Width="75" Click="FilterRefresh" IsChecked="True" />
+                <ToggleButton x:Name="btnExpert" Content="Expert" Width="75" Click="FilterRefresh" IsChecked="True" />
                 <StackPanel Name="stkWild">
-                    <Button Name="btnWild" Content="Wild" Width="75" Click="btnAll_Click"/>
-                    <ToggleButton x:Name="btnNaxx" Content="Naxx" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnGvG" Content="GvG" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnBRM" Content="BRM" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnTGT" Content="TGT" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnLoE" Content="LoE" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnHoF" Content="HoF" Width="75" Click="FilterRefresh" IsChecked="True"/>
+                    <Button Name="btnWild" Content="Wild" Width="75" Click="btnAll_Click" />
+                    <ToggleButton x:Name="btnNaxx" Content="Naxx" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnGvG" Content="GvG" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnBRM" Content="BRM" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnTGT" Content="TGT" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnLoE" Content="LoE" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnHoF" Content="HoF" Width="75" Click="FilterRefresh" IsChecked="True" />
                 </StackPanel>
                 <StackPanel Name="stkStandard">
-                    <Button Name="btnStandard" Content="Standard" Width="75" Click="btnAll_Click"/>
-                    <ToggleButton x:Name="btnOG" Content="OG" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnKara" Content="Karazhan" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnGangs" Content="Gangs" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnUngoro" Content="Ungoro" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnIcecrown" Content="Icecrown" Width="75" Click="FilterRefresh" IsChecked="True"/>
-                    <ToggleButton x:Name="btnLootapalooza" Content="Kobolds" Width="75" Click="FilterRefresh" IsChecked="True"/>
+                    <Button Name="btnStandard" Content="Standard" Width="75" Click="btnAll_Click" />
+                    <ToggleButton x:Name="btnOG" Content="OG" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnKara" Content="Karazhan" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnGangs" Content="Gangs" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnUngoro" Content="Ungoro" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnIcecrown" Content="Icecrown" Width="75" Click="FilterRefresh" IsChecked="True" />
+                    <ToggleButton x:Name="btnLootapalooza" Content="Kobolds" Width="75" Click="FilterRefresh" IsChecked="True" />
                 </StackPanel>
-                <ToggleButton x:Name="btnHero" Content="Hero" Width="75" Click="FilterRefresh"/>
+                <ToggleButton x:Name="btnHero" Content="Hero" Width="75" Click="FilterRefresh" />
             </StackPanel>
         </Grid>
     </DockPanel>

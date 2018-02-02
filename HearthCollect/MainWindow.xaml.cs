@@ -41,7 +41,7 @@ namespace HearthCollect
             // Get the custom view that was created in the xaml, not the default view. Page 395 wpf4u.
             CollectionViewSource viewSource = (CollectionViewSource)Resources["viewSource"];
             view = viewSource.View;
-            view.Filter = Filter;
+            view.Filter = new Predicate<object>(Filter);
             FilterRefresh();
         }
 

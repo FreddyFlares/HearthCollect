@@ -63,4 +63,18 @@ namespace HearthCollect
             throw new NotImplementedException();
         }
     }
+
+    class IntToDurabilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameer, CultureInfo culture)
+        {
+            int v = (int)value;
+            return v >= 0 ? v.ToString() : string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -42,6 +42,7 @@ namespace HearthCollect
         public int Cost { get; set; }
         public int Attack { get; set; }
         public int Health { get; set; }
+        public int Durability { get; set; } = -1;
         public string Text { get; set; }
         public object Mechanics { get; set; }
         public object PlayRequirements { get; set; }
